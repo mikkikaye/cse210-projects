@@ -40,13 +40,14 @@ class Program
             if (userInput ==3)
             {
                 Console.WriteLine();
-                string myJournal = "myJournal.txt";
-                FileStream filestream = File.Open(myJournal, FileMode.Open);
+                // string myJournal = "myJournal.txt";
+                // FileStream filestream = File.Open(myJournal, FileMode.Open);
+                journal.LoadFromCSV();
 
             }
             if (userInput == 4)
             {
-                
+                journal.SavetoCSV();
             }
         }
     }

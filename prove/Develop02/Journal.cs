@@ -36,8 +36,8 @@ public class Journal
    }
    public bool SavetoCSV()
    {
-     string myJournal = "myJournal.txt";
-     FileStream filestream = File.Create(myJournal);
+     // string myJournal = "myJournal.txt";
+     // FileStream filestream = File.Create(myJournal);
      
 
      
@@ -52,21 +52,28 @@ public class Journal
      return true;
 
    } 
-   public static List<Entry> LoadFromCSV(string filePath)
+   public void LoadFromCSV()
    {
         List<Entry> entry = new List<Entry>();
-        using (StreamReader reader = new StreamReader(filePath))
+        using (StreamReader reader = new StreamReader("myJournal.txt"))
         {
-            string line;
+            string line = "a";
             while ((line = reader.ReadLine()) != null)
             {
+               // Console.WriteLine(line);
                 string[] fields = line.Split("|");
-                string _date = fields[0];
+                string date = fields[0];
+                DateTime _date = DateTime.Parse(date);
                 string _prompt = fields[1];
                 string _response = fields[2];
+                Entry oldEntry = new Entry();
+                oldEntry._prompt = _prompt;
+                oldEntry._date = _date;
+                oldEntry._response = _response;
+                _entries.Add(oldEntry);
+               //  Console.WriteLine();
             }
         }
-    return entry;
    }
 }
 
